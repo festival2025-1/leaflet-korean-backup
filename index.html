@@ -1,53 +1,70 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0" name="viewport"/>
-<title>Seoul Circus Festival 2025</title>
-<link href="style.css" rel="stylesheet"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0" />
+  <title>서울서커스페스티벌2026</title>
+  <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-<div class="menu-list" id="menuList"><button onclick="goToSlideInstant(1)">🎪 축제 정보</button><button onclick="goToSlideInstant(3)">🗓️ 일정표</button><button onclick="goToSlideInstant(6)">🗺️ 지도</button><button onclick="goToSlideInstant(8)">🎭 공연 정보</button></div>
-<div class="language-switcher">
-  <a href="https://enleaflet.birosofest.org/" id="to-eb">Change to EN</a>
-</div>
-<div class="slider-container">
-<div class="slides-wrapper" id="slidesWrapper">
-  <div class="slide"><img alt="메인 포스터" src="/images/main-poster.webp"/></div>
-  <div class="slide"><img alt="축제 정보 1" src="/images/festinfo1.webp"/></div>
-  <div class="slide"><img alt="축제 정보 2" src="/images/festinfo2.webp"/></div>
-  <div class="slide"><img alt="일정표 1" src="/images/timetable53.webp"/></div>
-  <div class="slide"><img alt="일정표 2" src="/images/timetable54.webp"/></div>
-  <div class="slide"><img alt="일정표 3" src="/images/timetable55.webp"/></div>
-  <div class="slide"><img alt="지도 1" src="/images/map1.webp"/></div>
-  <div class="slide"><img alt="지도 2" src="/images/map2.webp"/></div>
-  <div class="slide"><img alt="공연 소개 1" src="/images/info1.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 2" src="/images/info2.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 3" src="/images/info3.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 4" src="/images/info4.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 5" src="/images/info5.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 6" src="/images/info6.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 7" src="/images/info7.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 8" src="/images/info8.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 9" src="/images/info9.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 10" src="/images/info10.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 11" src="/images/info11.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 12" src="/images/info12.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 13" src="/images/info13.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 14" src="/images/info14.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 15" src="/images/info15.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 16" src="/images/info16.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 17" src="/images/info17.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 소개 18" src="/images/info18.webp" loading="lazy"/></div>
-  <div class="slide"><img alt="공연 프로그램" src="/images/program.webp" loading="lazy"/></div>
-</div>
-<div class="slide-indicator" id="slideIndicator">1 / 28</div>
-</div>
-<button class="nav-btn prev-btn" onclick="changeSlide(-1)">◀</button>
-<button class="nav-btn next-btn" onclick="changeSlide(1)">▶</button>
-<script src="script.js"></script>
-</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="menu-list" id="menuList">
+    <button onclick="goToSlideInstant(1)">🎪 About Festival</button>
+    <button onclick="goToSlideInstant(3)">🗓️ Timetable</button>
+    <button onclick="goToSlideInstant(6)">🗺️ Map</button>
+    <button onclick="goToSlideInstant(8)">🎭 About Performance</button>
+  </div>
+
+  <div class="language-switcher">
+    <a href="https://krbackup.birosofest.org/" id="to-kr">Change to KR</a>
+  </div>
+
+  <div class="slider-container">
+    <div class="slides-wrapper" id="slidesWrapper">
+      <div class="slide"><img alt="메인 포스터" src="/images/main-poster.webp" /></div>
+      <div class="slide"><img alt="축제 정보 1" src="/images/festinfo1.webp" /></div>
+      <div class="slide"><img alt="축제 정보 2" src="/images/festinfo2.webp" /></div>
+      <div class="slide"><img alt="일정표 1" src="/images/timetable53.webp" /></div>
+      <div class="slide"><img alt="일정표 2" src="/images/timetable54.webp" /></div>
+      <div class="slide"><img alt="일정표 3" src="/images/timetable55.webp" /></div>
+      <div class="slide"><img alt="지도 1" src="/images/map1.webp" /></div>
+      <div class="slide"><img alt="지도 2" src="/images/map2.webp" /></div>
+      <div class="slide"><img alt="공연 소개 1" src="/images/info1.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 2" src="/images/info2.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 3" src="/images/info3.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 4" src="/images/info4.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 5" src="/images/info5.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 6" src="/images/info6.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 7" src="/images/info7.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 8" src="/images/info8.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 9" src="/images/info9.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 10" src="/images/info10.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 11" src="/images/info11.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 12" src="/images/info12.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 13" src="/images/info13.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 14" src="/images/info14.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 15" src="/images/info15.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 16" src="/images/info16.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 17" src="/images/info17.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 소개 18" src="/images/info18.webp" loading="lazy" /></div>
+      <div class="slide"><img alt="공연 프로그램" src="/images/program.webp" loading="lazy" /></div>
+    </div>
+
+    <div class="slide-indicator" id="slideIndicator">1 / 28</div>
+  </div>
+
+  <button class="nav-btn prev-btn" onclick="changeSlide(-1)">◀</button>
+  <button class="nav-btn next-btn" onclick="changeSlide(1)">▶</button>
+
+  <!-- 공지 팝업 -->
+  <div id="noticePopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup()" aria-label="공지 닫기">×</button>
+      <img id="noticeImage" src="" alt="현장 공지" class="popup-img" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
