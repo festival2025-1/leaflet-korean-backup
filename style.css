@@ -1,102 +1,115 @@
 :root {
   --vh: 1vh;
 }
+
 .slider-container {
   height: calc(var(--vh, 1vh) * 100);
 }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      font-family: sans-serif;
-      background: #000;
-      overflow: hidden;
-      touch-action: pan-y pinch-zoom;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .slider-container {
-      position: relative;
-      width: 100vw;
-      
-      overflow: hidden;
-    }
+html, body {
+  font-family: sans-serif;
+  background: #000;
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+}
 
-    .slides-wrapper {
-      display: flex;
-      height: 100%;
-      will-change: transform;
-    }
+.slider-container {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+}
 
-    .slide {
-      flex: 0 0 100vw;
-      height: 100%;
-    }
+.slides-wrapper {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
 
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+.slide {
+  flex: 0 0 100vw;
+  height: 100%;
+}
 
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      z-index: 10;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-    .prev-btn { left: 10px; }
-    .next-btn { right: 10px; }
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
 
-    .menu-btn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 20;
-      font-size: 1.5rem;
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-    }
+.prev-btn {
+  left: 10px;
+}
 
-    .menu-list {
-      position: absolute;
-      top: 52px;
-      left: 10px;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      flex-direction: column;
-      z-index: 20;
-    }
+.next-btn {
+  right: 10px;
+}
 
-    .menu-list.show { display: flex; }
-    .menu-list button {
-      background: transparent;
-      border: none;
-      color: white;
-      padding: 10px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 1rem;
-    }
+.menu-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 20;
+  font-size: 1.5rem;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-list {
+  position: absolute;
+  top: 52px;
+  left: 10px;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.menu-list.show {
+  display: flex;
+}
+
+.menu-list button {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
 
 .language-switcher {
   position: absolute;
   top: 16px;
-  right: 12px; /* 👉 더 오른쪽 구석으로! */
+  right: 12px;
   z-index: 30;
   background: rgba(0,0,0,0.6);
-  padding: 7px 13px; /* 👉 크기 약간 키움 */
+  padding: 7px 13px;
   border-radius: 12px;
-  font-size: 1.0rem; /* 👉 기존보다 1.2배 정도 큼 */
+  font-size: 1rem;
 }
 
 .language-switcher a {
@@ -109,66 +122,86 @@
   text-decoration: underline;
 }
 
-    .slide-indicator {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      color: #fff;
-      font-size: 0.9rem;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px 10px;
-      border-radius: 10px;
-      z-index: 10;
-    }
+.slide-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 10px;
+  z-index: 10;
+}
 
-    @media (max-width: 768px) {
-      .slide-indicator {
-        font-size: 0.8rem;
-        padding: 4px 8px;
-      }
+@media (max-width: 768px) {
+  .slide-indicator {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
 
-      .menu-btn {
-        font-size: 1.2rem;
-        padding: 8px;
-      }
-    }
+  .menu-btn {
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+}
 
-
-#popup-overlay {
+/* 팝업 */
+.popup {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  touch-action: none;
 }
 
 .popup-content {
   position: relative;
-  background: #000;
-  padding: 1rem;
-  border-radius: 12px;
   max-width: 90vw;
   max-height: 90vh;
-  overflow-y: auto;
+  animation: popupFade 0.25s ease;
 }
 
-.popup-content img {
-  width: 100%;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+.popup-img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  height: auto;
+  border-radius: 12px;
 }
 
-#popup-close {
+.close-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent;
+  top: -12px;
+  right: -12px;
+  width: 36px;
+  height: 36px;
   border: none;
-  color: white;
-  font-size: 1.5rem;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  font-size: 22px;
+  line-height: 36px;
+  text-align: center;
   cursor: pointer;
+  z-index: 10000;
+}
+
+@keyframes popupFade {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
