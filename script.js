@@ -6,144 +6,206 @@ function setVhVariable() {
 setVhVariable();
 window.addEventListener('resize', setVhVariable);
 
+const slidesWrapper = document.getElementById('slidesWrapper');
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let current = 0;
 
-    const slidesWrapper = document.getElementById('slidesWrapper');
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    let current = 0;
-
-    const slideIndicator = document.getElementById('slideIndicator');
-
-    slidesWrapper.style.width = `${totalSlides * 100}vw`;
-
-    function updateSlide() {
-      slidesWrapper.style.transform = `translateX(-${current * 100}vw)`;
-      slideIndicator.textContent = `${current + 1} / ${totalSlides}`;
-      prevBtn.style.display = current === 0 ? 'none' : 'block';
-      nextBtn.style.display = current === totalSlides - 1 ? 'none' : 'block';
-    }
-
-    function changeSlide(direction) {
-      slidesWrapper.style.transition = 'transform 0.5s ease';
-      current += direction;
-      if (current < 0) current = 0;
-      if (current >= totalSlides) current = totalSlides - 1;
-      updateSlide();
-        showArrowsTemporarily(); }
-
+const slideIndicator = document.getElementById('slideIndicator');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
+
 let arrowTimeout;
 
+slidesWrapper.style.width = `${totalSlides * 100}vw`;
+
+function updateSlide() {
+  slidesWrapper.style.transform = `translateX(-${current * 100}vw)`;
+  slideIndicator.textContent = `${current + 1} / ${totalSlides}`;
+  prevBtn.style.display = current === 0 ? 'none' : 'block';
+  nextBtn.style.display = current === totalSlides - 1 ? 'none' : 'block';
+}
+
+function changeSlide(direction) {
+  slidesWrapper.style.transition = 'transform 0.5s ease';
+  current += direction;
+
+  if (current < 0) current = 0;
+  if (current >= totalSlides) current = totalSlides - 1;
+
+  updateSlide();
+  showArrowsTemporarily();
+}
+
 function showArrowsTemporarily() {
-  // 화살표 보이기
   prevBtn.style.opacity = '1';
   nextBtn.style.opacity = '1';
 
-  // 기존 타이머 제거 후 새로 시작
   if (arrowTimeout) clearTimeout(arrowTimeout);
+
   arrowTimeout = setTimeout(() => {
     prevBtn.style.opacity = '0';
     nextBtn.style.opacity = '0';
-  }, 2000); // 2초 후 숨김
+  }, 2000);
 }
 
-    function toggleMenu() {
-      document.getElementById('menuList').classList.toggle('show');
-    }
+function toggleMenu() {
+  document.getElementById('menuList').classList.toggle('show');
+}
 
-    function goToSlideInstant(index) {
-      slidesWrapper.style.transition = 'none';
-      current = index;
-      updateSlide();
-      setTimeout(() => {
-        slidesWrapper.style.transition = 'transform 0.5s ease';
-      }, 50);
-      document.getElementById('menuList').classList.remove('show');
-    }
+function goToSlideInstant(index) {
+  slidesWrapper.style.transition = 'none';
+  current = index;
+  updateSlide();
 
-    let startX = 0, startY = 0;
-    let endX = 0, endY = 0;
-    let isPinchZoom = false;
+  setTimeout(() => {
+    slidesWrapper.style.transition = 'transform 0.5s ease';
+  }, 50);
 
-    document.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 1) {
-        isPinchZoom = true;
-        return;
-      }
-      isPinchZoom = false;
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    });
+  document.getElementById('menuList').classList.remove('show');
+}
 
-    document.addEventListener('touchend', (e) => {
-      if (isPinchZoom || e.changedTouches.length > 1) return;
+let startX = 0;
+let startY = 0;
+let endX = 0;
+let endY = 0;
+let isPinchZoom = false;
 
-      endX = e.changedTouches[0].clientX;
-      endY = e.changedTouches[0].clientY;
+document.addEventListener('touchstart', (e) => {
+  if (e.touches.length > 1) {
+    isPinchZoom = true;
+    return;
+  }
 
-      const deltaX = endX - startX;
-      const deltaY = endY - startY;
-      const angle = Math.abs(Math.atan2(deltaY, deltaX) * 180 / Math.PI);
+  isPinchZoom = false;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+});
 
-      if (Math.abs(deltaX) > 50 && (angle < 15 || angle > 165)) {
-        showArrowsTemporarily();
-        if (deltaX < 0) changeSlide(1);
-        else changeSlide(-1);
-      }
-    });
+document.addEventListener('touchend', (e) => {
+  if (isPinchZoom || e.changedTouches.length > 1) return;
 
-    updateSlide();
+  endX = e.changedTouches[0].clientX;
+  endY = e.changedTouches[0].clientY;
 
-    // 인스타그램 버튼 추가
-    const menuList = document.getElementById("menuList");
-    const instaLink = document.createElement("a");
-    instaLink.href = "https://www.instagram.com/ssaf.official/";
-    instaLink.target = "_blank";
-    instaLink.style.display = "flex";
-    instaLink.style.alignItems = "center";
-    instaLink.style.gap = "6px";
-    instaLink.style.margin = "10px";
-    instaLink.style.fontSize = "1rem";
-    instaLink.style.color = "#fff";
-    instaLink.style.textDecoration = "none";
+  const deltaX = endX - startX;
+  const deltaY = endY - startY;
+  const angle = Math.abs(Math.atan2(deltaY, deltaX) * 180 / Math.PI);
 
-    const instaIcon = document.createElement("img");
-    instaIcon.src = "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png";
-    instaIcon.alt = "Instagram Icon";
-    instaIcon.style.width = "18px";
-    instaIcon.style.height = "18px";
+  if (Math.abs(deltaX) > 50 && (angle < 15 || angle > 165)) {
+    showArrowsTemporarily();
+    if (deltaX < 0) changeSlide(1);
+    else changeSlide(-1);
+  }
+});
 
-    const instaText = document.createElement("span");
-    instaText.textContent = "Official Instagram";
+updateSlide();
 
-    instaLink.appendChild(instaIcon);
-    instaLink.appendChild(instaText);
-    menuList.appendChild(instaLink);
+// 인스타그램 버튼 추가
+const menuList = document.getElementById('menuList');
+const instaLink = document.createElement('a');
+instaLink.href = 'https://www.instagram.com/ssaf.official/';
+instaLink.target = '_blank';
+instaLink.style.display = 'flex';
+instaLink.style.alignItems = 'center';
+instaLink.style.gap = '6px';
+instaLink.style.margin = '10px';
+instaLink.style.fontSize = '1rem';
+instaLink.style.color = '#fff';
+instaLink.style.textDecoration = 'none';
+
+const instaIcon = document.createElement('img');
+instaIcon.src = 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png';
+instaIcon.alt = 'Instagram Icon';
+instaIcon.style.width = '18px';
+instaIcon.style.height = '18px';
+
+const instaText = document.createElement('span');
+instaText.textContent = '공식 인스타그램';
+
+instaLink.appendChild(instaIcon);
+instaLink.appendChild(instaText);
+menuList.appendChild(instaLink);
 
 document.addEventListener('click', function(event) {
   const menu = document.getElementById('menuList');
   const menuBtn = document.querySelector('.menu-btn');
 
-  // 메뉴가 열려 있고, 클릭한 곳이 메뉴나 버튼이 아닐 때 닫기
-  if (menu.classList.contains('show') &&
-      !menu.contains(event.target) &&
-      !menuBtn.contains(event.target)) {
+  if (
+    menu.classList.contains('show') &&
+    !menu.contains(event.target) &&
+    !menuBtn.contains(event.target)
+  ) {
     menu.classList.remove('show');
   }
 });
 
-// DOM이 준비되면 실행되는 모든 코드
 document.addEventListener('DOMContentLoaded', function () {
-  updateSlide();          // 초기 슬라이드 업데이트
-  showArrowsTemporarily(); // 첫 진입 시 화살표 표시
+  updateSlide();
+  showArrowsTemporarily();
+});
 
-  // 팝업 닫기 기능
-  const popup = document.getElementById('popup-overlay');
-  const closeBtn = document.getElementById('popup-close');
-  if (popup && closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
+/* =========================
+   공지 팝업 (여러 장 순차 표시, 접속할 때마다 표시)
+   ========================= */
+
+const popupImages = [
+  '/images/notice1.jpg',
+  '/images/notice2.jpg',
+  '/images/notice3.jpg',
+  '/images/notice4.jpg',
+  '/images/notice5.jpg'
+];
+
+let validPopupImages = [];
+let currentPopupIndex = 0;
+
+function closePopup() {
+  const popup = document.getElementById('noticePopup');
+  const popupImg = document.getElementById('noticeImage');
+
+  currentPopupIndex++;
+
+  if (currentPopupIndex < validPopupImages.length) {
+    popupImg.src = validPopupImages[currentPopupIndex];
+  } else {
+    popup.style.display = 'none';
+  }
+}
+
+window.addEventListener('load', function () {
+  const popup = document.getElementById('noticePopup');
+  const popupImg = document.getElementById('noticeImage');
+
+  if (!popup || !popupImg) return;
+
+  let checkedCount = 0;
+  validPopupImages = [];
+  currentPopupIndex = 0;
+
+  popupImages.forEach((src) => {
+    const img = new Image();
+
+    img.onload = function () {
+      validPopupImages.push(src + '?v=' + Date.now());
+      checkedCount++;
+      showPopupIfReady();
+    };
+
+    img.onerror = function () {
+      checkedCount++;
+      showPopupIfReady();
+    };
+
+    img.src = src;
+  });
+
+  function showPopupIfReady() {
+    if (checkedCount !== popupImages.length) return;
+
+    if (validPopupImages.length > 0) {
+      popupImg.src = validPopupImages[currentPopupIndex];
+      popup.style.display = 'flex';
+    }
   }
 });
